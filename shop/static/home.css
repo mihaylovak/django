@@ -1,0 +1,16 @@
+.products { 
+    display: flex;
+    width: 70%;
+    margin-left: 15%;
+    flex-flow:row wrap; 
+}
+
+.product {
+    width: 30%;
+    padding: 10px;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+}

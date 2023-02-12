@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<link rel="stylesheet" href="{% static 'home.css' %}">
+<h1 style='text-align: center;'>Количка</h1>
+<section>
+    {% if not cart_products %}
+        <h1 style='color: red; text-align: center;'>Количката е празна</h1>
+    {% endif %}
+    <div class='products'>
+        
+        {% for cart in cart_products %}
+            <div class='product'>
+                <h3>{{ cart.product.name }}</h3>
+                <div>
+                    <h1>{{ cart.product.price }}лв</h1>
+                    <form method='POST'>
+                        <input type='hidden' name='cart_id' value='{{ cart.id }}'>
+                        <input onchange="this.form.submit()" min='1' max='100' name='quantity' value='{{ cart.quantity }}' type='number'>
+                    </form>
+                </div>
+                <img src="{{ cart.product.image_name.url }}" alt="{{ cart.product.name }}">
+                <p>{{ cart.product.description }}</p>
+                <a href="/removeProductFromCart/{{ cart.id }}/">Изтрий</a>
+            </div>
+        {% endfor %}
+    </div>
+    {% if cart_products %}
+        <div style='display: flex; align-items: center; flex-flow: column;'>
+            <a href='/orderTotal/'><button style='padding: 10px 15px; background-color: red; border-radius: 9px; font-size: 1.5em; cursor: pointer; color: white'>Order Now!</button></a>
+        </div>
+    {% endif %}
+</section>
+
+{% endblock content %}

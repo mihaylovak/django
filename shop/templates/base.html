@@ -1,0 +1,77 @@
+{% load static %}
+<html>
+<style>
+    html, body {
+        margin: 0px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav .nav-container {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin-left: 15%;
+    }
+
+    nav .nav-container ul {
+        display: flex;
+        list-style-type: none;
+    }
+
+    nav .nav-container ul li {
+        margin-top: 10px;
+    }
+
+    nav .nav-container ul a {
+        text-decoration: none;
+        color: white;
+        padding: 20 25px;
+        font-size: 1.2em;
+        
+
+    }
+      
+    .maincontents {
+        flex: 1;
+        display: flex; /* if you remove this line it works on Safari */
+        flex-flow: column;
+        background-color: #f1d9e2;
+    }
+      
+    footer {
+        flex: 0;
+    }
+</style>
+<body>
+    <nav style='background-color: #B3005E'>
+        <div class='nav-container'>
+            <img style='height: 80px; width: auto;' src='{% static "IPC-Logo-Alternate-Large.png" %}'>
+            <ul>
+                <li><a href='/'>Меню</a></li>
+                
+                
+                
+                {% if user.is_authenticated %}
+                    <li><a href='/cart/'>Количка</a></li>
+                    <li><a href='/allOrders/'>Поръчки</a></li>
+                    {% if user.is_superuser %}
+                        <li><a href='/admin/'>Admin</a></li>
+                    {% endif %}
+                    <li><a href='/logout/'>Logout</a></li>
+                {% else %}
+                    <li><a href='/login/'>Login</a></li>
+                    <li><a href='/register/'>Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class='maincontents'>
+    {% block content %}{% endblock content %}
+    </div>
+    <footer style='background-color: #B3005E'>
+        <p style='display: flex; justify-content: center; color: white;'>Created by Mihaela Kolarova 72058</p>
+    </footer>
+</body>
+</html

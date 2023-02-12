@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+<link rel="stylesheet" href="{% static 'home.css' %}">
+<h1 style='text-align: center;'>Поръчки</h1>
+<section style='display: flex; align-items: center; flex-flow: column;'>
+    <div>
+        <h3>Доставка: 0.00лв</h3>
+        <h3>Поръчка: {{ order_total }}лв</h3>
+        <h1>Общо: {{ order_total }}лв</h1>
+    </div>
+    <div style='display: flex; align-items: center; flex-flow: column;'>
+        <form method="POST" action='/createOrder/'>
+            <input type='submit' style='padding: 10px 15px; background-color: red; border-radius: 9px; font-size: 1.5em; cursor: pointer; color: white' value='Order Now!'></a>
+        </form>
+    </div>
+</section>
+
+{% endblock content %}
